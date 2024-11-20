@@ -33,3 +33,11 @@ jobs:
 
     - name: Run CSS Tests
       run: npx stylelint "**/*.css"
+
+    - name: Install Testing Tools
+      run: |
+        npm init -y
+        npm install --save-dev stylelint stylelint-config-recommended htmlhint
+
+
+      
