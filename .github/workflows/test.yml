@@ -1,0 +1,35 @@
+name: Run HTML and CSS Tests
+
+on:
+  push:
+    branches:
+      - main
+      - feature
+  pull_request:
+    branches:
+      - main
+      - feature
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install Testing Tools
+      run: |
+        npm init -y
+        npm install --save-dev htmlhint stylelint
+
+    - name: Run HTML Tests
+      run: npx htmlhint "**/*.html"
+
+    - name: Run CSS Tests
+      run: npx stylelint "**/*.css"
